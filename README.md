@@ -1,6 +1,6 @@
 <h1 align="center">EP1</h1>
 
-<h2 align="left">Objetivos</h2>
+<h3 align="left">Objetivos</h3>
 <p align="left">O objetivo do primeiro exercício-programa consiste em familiarizar os alunos com manipulação de números inteiros, operadores matemáticos, lógicos e laços.</p>
 
 <h3 align="left">Introdução</h2>
