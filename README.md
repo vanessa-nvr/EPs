@@ -1,4 +1,3 @@
-# EPs
 <h1 align="center">EP1</h1>
 
 <h2 align="left">Objetivos</h2>
