@@ -70,18 +70,43 @@ Exemplo de chamada da função gera_grafico_simples com saídas correspondentes 
 - gera_grafico_simples(cSIR, 10)
 [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 255, 255], [0, 0, 0, 0, 0, 0, 255, 255, 0, 0], [0, 0, 0, 0, 0, 255, 0, 0, 0, 0], [0, 0, 0, 255, 255, 0, 0, 0, 0, 0], [255, 255, 255, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
 Abaixo é exibido o conteúdo do arquivo PGM correspondente “graf_simples.pgm”:
-P2
-10 7
-255
-     0       0       0       0       0       0       0       0       0       0
-     0       0       0       0       0       0       0       0     255     255
-     0       0       0       0       0       0     255     255       0       0
-     0       0       0       0       0     255       0       0       0       0
-     0       0       0     255     255       0       0       0       0       0
-   255     255     255       0       0       0       0       0       0       0
-     0       0       0       0       0       0       0       0       0       0
-
-
-
 Para visualizar a imagem "graf_simples.pgm", você deve rodar seu programa diretamente no seu computador. No VPL não é possível visualizar as imagens.  Para visualizar a imagem, você deve abrir o arquivo "graf_simples.pgm" resultante com algum programa de edição/visualização de imagens, que entenda o formato PGM.  Abaixo é mostrado um exemplo de visualização no Gimp, usando critic_SIR(cSIR, S,I,R, 100, 0.2, 100, 0.05, 0.90, 0.05)  e depois gera_grafico_simples(cSIR).
 </p>  
+
+<h3 align="left">Tarefa 4</h3>
+<p align="left">Construa uma função gera_grafico_composto(S,I,R) que receba como parâmetros três listas de valores (float) e construa um gráfico X-Y em que o eixo Y tenha como limite inferior o valor Y_MIN=0 e como limite superior o inteiro Y_MAX definido pelo teto do valor máximo encontrado em S∪I∪R, e o eixo X tenha como limite inferior o valor X_MIN=0 e como limite superior X_MAX a quantidade de colunas de S menos um. Este gráfico deve apresentar uma representação dos valores em S, I e R, em formato de linhas superpostas com cores distintas. O gráfico deverá ser registrado em um arquivo no formato PPM, com o nome padronizado “graf_composto.ppm”. A função deverá, também, devolver como resposta o conteúdo do arquivo PPM no formato de uma matriz de valores inteiros. Estes valores devem ser também padronizados como:
+
+“255 0 0” (vermelho) para pontos que representem os valores contidos na lista correspondente aos valores de S, 
+“0 255 0” (verde) para pontos que representem os valores contidos na lista correspondente aos valores de I, 
+“0 0 255” (azul) para pontos que representem os valores contidos na lista correspondente aos valores de R e
+“0 0 0” (preto) para os demais pontos na imagem.
+No caso de sobreposição das curvas, as cores devem ser somadas (exemplo, sobreposição de S e I gera cor “255 255 0” (amarelo)).
+Exemplo de chamada da função gera_grafico_composto com saídas correspondentes esperadas: 
+
+- SIR(S,I,R, 10, 0.5, 0.1, 4)
+- gera_grafico_composto(S, I, R, 10)
+[[255, 0, 0, 255, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 255, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 255, 0, 0, 255, 0], [0, 255, 0, 0, 255, 0, 0, 0, 0, 0, 0, 0], [0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255]]
+Abaixo é exibido o conteúdo do arquivo PPM correspondente “graf_composto.ppm”:
+
+Para visualizar a imagem "graf_composto.ppm", você deve rodar seu programa em Python diretamente no seu computador. No VPL não é possível visualizar as imagens. Para visualizar a imagem, você deve abrir o arquivo "graf_composto.ppm" resultante com algum programa de edição/visualização de imagens, com suporte para o formato PPM. Abaixo é mostrado um exemplo de visualização no Gimp, usando SIR(S,I,R, 100, 0.5, 0.2, 100) e depois gera_grafico_composto(S, I, R, 100).
+</p>
+
+<h3 align="left">Tarefa 5</h3>
+<p align="left">Construa uma função leitura_de_valores(nome_de_arquivo ...) (em Python pode devolver N, Gama,Tmax, Beta_MIN, Beta_MAX, Beta_delta e em C deve passar todos via referência) que receba como parâmetro um nome de arquivo e retorne valores para as seguintes variáveis: N, Gama, Tmax, Beta_MIN, Beta_MAX, Beta_delta, que deverão ser lidas de um arquivo texto com o nome indicado em nome_de_arquivo. O arquivo texto deve ter um valor para cada uma das variáveis de retorno. Os valores devem ser fornecidos um em cada linha e devem ser transformados para o tipo de dados apropriado (int ou float, dependendo da variável). A função leitura_de_valores(nome_de_arquivo ...) é chamada pela função main() do seguinte modo:
+Python: N, Gama, Tmax, Beta_MIN, Beta_MAX, Beta_delta = leitura_de_valores(Dados)
+
+C: leitura_de_valores(Dados, &N, &Gama, &Tmax, &Beta_MIN, &Beta_MAX, &Beta_delta)
+
+Exemplos de arquivos de entrada podem ser vistos nas abas "dados1.txt", "dados2.txt", "dados3.txt", "dados4.txt" e "dados5.txt". Não edite esses arquivos, pois eles serão usados nos testes automáticos do VPL.
+</p>
+
+<h3 align="left">Programa principal:</h3>
+<p align="left">A função main() está sendo fornecida pronta e não deve ser alterada. Ela possui 7 modos de operação diferentes, visando testar as diferentes partes do seu programa. Os modos são:
+</p>
+<p align="left">1. Calcula 'SIR' e imprime os vetores S, I e R - leitura dos parâmetros via teclado.</p>
+<p align="left">2. Calcula 'critic_SIR' e imprimir o vetor resultante - leitura dos parâmetros via teclado.</p>
+<p align="left">3. Calcula 'critic_SIR' e imprimir o vetor resultante - leitura dos parâmetros de um arquivo fornecido.</p>
+<p align="left">4. Calcula 'critic_SIR' e testa matriz devolvida por 'gera_grafico_simples' - leitura dos parâmetros via teclado.</p>
+<p align="left">5. Calcula 'critic_SIR' e testa arquivo PGM no disco por 'gera_grafico_simples' - leitura dos parâmetros via teclado.</p>
+<p align="left">6. Calcula 'SIR' e testa matriz devolvida por 'gera_grafico_composto' - leitura dos parâmetros via teclado.</p>
+<p align="left">7. Calcula 'SIR' e testa arquivo PPM no disco por 'gera_grafico_composto' - leitura dos parâmetros via teclado.</p>
